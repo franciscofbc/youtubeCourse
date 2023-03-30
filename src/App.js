@@ -6,16 +6,16 @@ function App() {
 
   const [excuse, setExcuse] = useState('')
 
-  const fetchData = (excuseType) => {
-    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuseType}/`).then((res) => {
-      setExcuse(res.data[0].excuse)
-    })
-  }
+  // const fetchData = (excuseType) => {
+  //   Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuseType}/`).then((res) => {
+  //     setExcuse(res.data[0].excuse)
+  //   })
+  // }
 
-  useEffect(() => {
-    fetchData('party')
+  // useEffect(() => {
+  //   fetchData('party')
 
-  }, [])
+  // }, [])
 
   const excuseParty = () => {
     Axios.get('https://excuser-three.vercel.app/v1/excuse/party/').then((res) => {
@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <h1>Generate An Excuse</h1>
-      <button onClick={fetchData('party')}>Party</button>
+      {/* <button onClick={fetchData('party')}>Party</button> */}
       {/* <button onClick={excuseParty}>Party</button> */}
       {/* <button onClick={excuseFamily}>Family</button> */}
       {/* <button onClick={excuseOffice}>Office</button> */}
