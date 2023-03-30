@@ -29,7 +29,7 @@ function App() {
       if (task.id === id) {
         return { ...task, completed: true }
       } else {
-        return { ...task }
+        return task
       }
     }))
   }
