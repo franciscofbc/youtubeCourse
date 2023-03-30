@@ -1,62 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
-import { Task } from './Task';
+import Axios from 'axios';
 
 function App() {
-  const [todoList, setTodoList] = useState([])
-  const [newTask, setNewTask] = useState('')
 
-  const handleChange = (event) => {
-    setNewTask(event.target.value)
+  const [excuse, setExcuse] = useState('')
+
+  const fetchData = (excuseType) => {
+    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuseType}/`).then((res) => {
+      setExcuse(res.data[0].excuse)
+    })
   }
 
-  const addTask = () => {
-    const task = {
-      id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-      taskName: newTask,
-      completed: false
-    }
-    setTodoList([...todoList, task])
+  useEffect(() => {
+    fetchData('party')
 
+  }, [])
+
+  const excuseParty = () => {
+    Axios.get('https://excuser-three.vercel.app/v1/excuse/party/').then((res) => {
+      setExcuse(res.data[0].excuse)
+    })
+    // fetchData('party')
   }
 
-  const deleteTask = (id) => {
-    setTodoList(todoList.filter(task => task.id !== id))
+  const excuseFamily = () => {
+    Axios.get('https://excuser-three.vercel.app/v1/excuse/family/').then((res) => {
+      setExcuse(res.data[0].excuse)
+    })
   }
 
-  const completeTask = (id) => {
-    setTodoList(todoList.map(task => {
-      if (task.id === id) {
-        return { ...task, completed: true }
-      } else {
-        return task
-      }
-    }))
+  const excuseOffice = () => {
+    Axios.get('https://excuser-three.vercel.app/v1/excuse/office/').then((res) => {
+      setExcuse(res.data[0].excuse)
+    })
   }
 
   return (
     <div className="App">
-
-      <div className='addTask'>
-        <input placeholder='Type your task' onChange={handleChange} />
-        <button onClick={addTask}>Add Task</button>
-      </div>
-
-      <div className='list'>
-        {todoList.map((task) => {
-          return (
-            <Task
-              taskName={task.taskName}
-              id={task.id}
-              completed={task.completed}
-              deleteTask={deleteTask}
-              completeTask={completeTask}
-            />
-          )
-        })}
-
-      </div>
-
+      <h1>Generate An Excuse</h1>
+      <button onClick={fetchData('party')}>Party</button>
+      {/* <button onClick={excuseParty}>Party</button> */}
+      {/* <button onClick={excuseFamily}>Family</button> */}
+      {/* <button onClick={excuseOffice}>Office</button> */}
+      <p>Excuse: {excuse}</p>
     </div >
   );
 }
