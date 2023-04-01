@@ -1,5 +1,5 @@
 import './App.css';
-import { useToggle } from './components/useToggle';
+import { useToggle } from './components/useGetCat';
 
 
 function App() {

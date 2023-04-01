@@ -1,7 +1,8 @@
 
-import { useState } from 'react';
+// import {useQuery} form '@tans'
+import Axios from 'axios'
 
-export const useToggle = (initialValue = false) => {
+export const useGetCat = () => {
     const [state, setState] = useState(initialValue)
 
     const toggle = () => {
