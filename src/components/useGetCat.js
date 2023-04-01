@@ -1,14 +1,14 @@
 
-// import {useQuery} form '@tans'
+import { useQuery } from '@tanstack/react-query'
 import Axios from 'axios'
 
 export const useGetCat = () => {
-    const [state, setState] = useState(initialValue)
+    const { data } = useQuery(['cat'], async () => {
+        return Axios.get('https://catfact.ninja/fact').then((res) => res.data)
+    })
 
-    const toggle = () => {
-        setState((prev) => !prev)
-    }
 
-    return [state, toggle]
+
+    return { data }
 
 }
