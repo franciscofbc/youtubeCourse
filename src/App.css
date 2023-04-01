@@ -1,9 +1,11 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+
 }
-/* 
-.listTask {
+
+form {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-} */
+  margin-top: 32px;
+}
